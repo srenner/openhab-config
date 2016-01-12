@@ -23,7 +23,7 @@ then
 
 rule "Downstairs HVAC - Bedtime"
 when
-	Time cron "0 0 22 ? * MON-SUN"
+	Time cron "0 15 22 ? * MON-SUN"
 then
 	sendCommand(HVAC_HeatSetPoint, 66)
 
