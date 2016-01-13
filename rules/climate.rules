@@ -9,6 +9,13 @@ then
 	sendCommand(HVAC_HeatSetPoint, 68)
 end	
 
+rule "Downstairs HVAC - Before Work on Running Mornings"
+when
+	Time cron "0 30 5 ? * TUE-THU"
+then
+	sendCommand(HVAC_HeatSetPoint, 68)
+end
+
 rule "Downstairs HVAC - During Work"
 when
 	Time cron "0 15 7 ? * MON-FRI"
