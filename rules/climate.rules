@@ -13,14 +13,19 @@ rule "Downstairs HVAC - During Work"
 when
 	Time cron "0 15 7 ? * MON-FRI"
 then
-	sendCommand(HVAC_HeatSetPoint, 62)
+	sendCommand(sw_WorkDay, ON)
+	if(sw_WFH.state == OFF) {
+		sendCommand(HVAC_HeatSetPoint, 62)
+	}
 
 rule "Downstairs HVAC - Afternoon Checkpoint"
 when
 	Time cron "0 45 15 ? * MON-FRI"
 then
 	if(wx_Windchill.state < 20.0) {
-		sendCommand(HVAC_HeatSetPoint, 66)
+		if(HVAC_HeatSetPoint.state < 66) {
+			sendCommand(HVAC_HeatSetPoint, 66)
+		}
 	}
 
 rule "Downstairs HVAC - Home From Work"
@@ -28,6 +33,8 @@ when
 	Time cron "0 30 16 ? * MON-FRI"
 then
 	sendCommand(HVAC_HeatSetPoint, 68)
+	sendCommand(sw_WorkDay, OFF)
+	sendCommand(sw_WFH, OFF)
 
 rule "Downstairs HVAC - Bedtime"
 when
