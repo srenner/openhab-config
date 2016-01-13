@@ -13,7 +13,7 @@ rule "Downstairs HVAC - During Work"
 when
 	Time cron "0 15 7 ? * MON-FRI"
 then
-	sendCommand(HVAC_HeatSetPoint, 63)
+	sendCommand(HVAC_HeatSetPoint, 62)
 
 rule "Downstairs HVAC - Afternoon Checkpoint"
 when
