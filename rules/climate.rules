@@ -2,6 +2,15 @@ import org.openhab.model.script.actions.*
 import org.joda.time.*
 
 
+rule "WFH On"
+when
+        Item sw_WFH received update ON
+then
+	if(sw_WorkDay.state == ON) {
+		sendCommand(HVAC_HeatSetPoint, 68)
+	}
+end
+
 rule "Downstairs HVAC - Before Work"
 when
 	Time cron "0 45 5 ? * MON-FRI"
