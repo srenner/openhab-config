@@ -15,6 +15,14 @@ when
 then
 	sendCommand(HVAC_HeatSetPoint, 63)
 
+rule "Downstairs HVAC - Afternoon Checkpoint"
+when
+	Time cron "0 45 15 ? * MON-FRI"
+then
+	if(wx_Windchill.state < 20.0) {
+		sendCommand(HVAC_HeatSetPoint, 66)
+	}
+
 rule "Downstairs HVAC - Home From Work"
 when
 	Time cron "0 30 16 ? * MON-FRI"
