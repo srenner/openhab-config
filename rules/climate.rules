@@ -18,7 +18,7 @@ then
 	sendCommand(HVAC_HeatSetPoint, 68)
 end	
 
-rule "Downstairs HVAC - Before Work on Running Mornings"
+rule "Downstairs HVAC - Before Work on Workout Mornings"
 when
 	Time cron "0 30 5 ? * TUE-THU"
 then
@@ -66,7 +66,7 @@ rule "Downstairs HVAC - Bedtime"
 when
 	Time cron "0 15 22 ? * MON-SUN"
 then
-	sendCommand(HVAC_HeatSetPoint, 66)
+	sendCommand(HVAC_HeatSetPoint, 65)
 
 rule "Downstairs HVAC - Weekend"
 when
