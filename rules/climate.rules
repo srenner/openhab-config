@@ -46,11 +46,11 @@ then
 
 rule "Downstairs HVAC - Afternoon Checkpoint 2"
 when
-	Time cron "0 15 16 ? * MON-FRI"
+	Time cron "0 0 16 ? * MON-FRI"
 then
 	if(wx_Temperature.state < 30.0) {
-		if(HVAC_HeatSetPoint.state < 67) {
-			sendCommand(HVAC_HeatSetPoint, 67)
+		if(HVAC_HeatSetPoint.state < 66) {
+			sendCommand(HVAC_HeatSetPoint, 66)
 		}
 	}
 
