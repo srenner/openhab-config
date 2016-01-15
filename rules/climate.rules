@@ -1,6 +1,19 @@
 import org.openhab.model.script.actions.*
 import org.joda.time.*
 
+rule "Vacation On"
+when
+	Item sw_Vacation update ON
+then
+	sendCommand(HVAC_HeatSetPoint, 62)
+end
+
+rule "Vacation Off"
+when
+	Item sw_Vacation update OFF
+then
+	sendCommand(HVAC_HeatSetPoint, 68)
+end
 
 rule "WFH On"
 when
@@ -15,14 +28,18 @@ rule "Downstairs HVAC - Before Work"
 when
 	Time cron "0 45 5 ? * MON-FRI"
 then
-	sendCommand(HVAC_HeatSetPoint, 68)
+	if(sw_Vacation.state == OFF) {
+		sendCommand(HVAC_HeatSetPoint, 68)
+	}
 end	
 
 rule "Downstairs HVAC - Before Work on Workout Mornings"
 when
 	Time cron "0 30 5 ? * TUE-THU"
 then
-	sendCommand(HVAC_HeatSetPoint, 68)
+	if(sw_Vacation.state == OFF) {
+		sendCommand(HVAC_HeatSetPoint, 68)
+	}
 end
 
 rule "Downstairs HVAC - During Work"
@@ -33,44 +50,65 @@ then
 	if(sw_WFH.state == OFF) {
 		sendCommand(HVAC_HeatSetPoint, 62)
 	}
+end
 
 rule "Downstairs HVAC - Afternoon Checkpoint 1"
 when
 	Time cron "0 45 15 ? * MON-FRI"
 then
-	if(wx_Temperature.state < 25.0) {
-		if(HVAC_HeatSetPoint.state < 66) {
-			sendCommand(HVAC_HeatSetPoint, 66)
+	if(sw_Vacation.state == OFF) {
+		if(wx_Temperature.state < 25.0) {
+			if(HVAC_HeatSetPoint.state < 66) {
+				sendCommand(HVAC_HeatSetPoint, 66)
+			}
 		}
 	}
+end
 
 rule "Downstairs HVAC - Afternoon Checkpoint 2"
 when
 	Time cron "0 0 16 ? * MON-FRI"
 then
-	if(wx_Temperature.state < 30.0) {
-		if(HVAC_HeatSetPoint.state < 66) {
-			sendCommand(HVAC_HeatSetPoint, 66)
+	if(sw_Vacation.state == OFF) {
+		if(wx_Temperature.state < 35.0) {
+			if(HVAC_HeatSetPoint.state < 66) {
+				sendCommand(HVAC_HeatSetPoint, 66)
+			}
 		}
 	}
+end
 
 rule "Downstairs HVAC - Home From Work"
 when
 	Time cron "0 30 16 ? * MON-FRI"
 then
-	sendCommand(HVAC_HeatSetPoint, 68)
+	if(sw_Vacation.state == OFF) {
+		sendCommand(HVAC_HeatSetPoint, 68)
+	}
+	else {
+		sendCommand(HVAC_HeatSetPoint, 62)
+	}
 	sendCommand(sw_WorkDay, OFF)
 	sendCommand(sw_WFH, OFF)
+end
 
 rule "Downstairs HVAC - Bedtime"
 when
 	Time cron "0 15 22 ? * MON-SUN"
 then
-	sendCommand(HVAC_HeatSetPoint, 65)
+	if(sw_Vacation.state == OFF) {
+		sendCommand(HVAC_HeatSetPoint, 65)
+	}
+end
 
 rule "Downstairs HVAC - Weekend"
 when
 	Time cron "0 0 7 ? * SAT-SUN"
 then
-	sendCommand(HVAC_HeatSetPoint, 68)
-
+	if(sw_Vacation.state == OFF) {
+		sendCommand(HVAC_HeatSetPoint, 68)
+	}
+	else {
+		sendCommand(HVAC_HeatSetPoint, 62)
+	}
+end

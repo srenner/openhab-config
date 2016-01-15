@@ -24,6 +24,7 @@ sitemap default label="Renner Household"
 
 	Frame label="Other" {	
 		Group item=Astro label="Astro" icon="moon"
+		Switch item=sw_Vacation label="On Vacation"
 	}
 
 }
