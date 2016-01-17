@@ -4,8 +4,9 @@ sitemap default label="Renner Household"
 		Switch item=sw_GarageLight label="Garage" icon="switch"
 		Switch item=sw_BackPorchLight label="Back Porch" icon="switch"
 		Switch item=sw_FrontPorchLight label="Front Porch" icon="switch"
-		Slider item=dm_MasterBedroomLamp label="Bedroom Lamp [%.0f%%]" icon="slider"
 		Slider item=dm_KitchenCabinet label="Kitchen Cabinet [%.0f%%]" icon="slider"
+		Slider item=dm_FamilyRoomLamp label="Family Room [%.0f%%]" icon="slider"
+		Slider item=dm_MasterBedroomLamp label="Bedroom Lamp [%.0f%%]" icon="slider"
 	}
 
 	Frame label="Climate Control" {
@@ -13,8 +14,10 @@ sitemap default label="Renner Household"
 		Switch item=sw_WFH label="WFH" visibility=[sw_WorkDay==ON]
 		Text item=HVAC_Temperature label="Downstairs Temperature [%.0f °F]"
 		Setpoint item=HVAC_HeatSetPoint label="Set Downstairs [%.0f °F]" icon="temperature" minValue=55 maxValue=85 step=1 switchSupport
-		Text item=wx_Temperature label="Outside Temperature [%.1f °F]" icon="temperature"
+		Text item=wx_Temperature label="Outside Temperature [%.0f °F]" icon="temperature"
+		/*
 		Text item=wx_Humidity label="Outside Humidity [%.0f %%]" icon="temperature"
+		*/
 		Group item=Climate label="See All" icon="temperature"
 	}
 
