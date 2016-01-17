@@ -57,7 +57,7 @@ when
 	Time cron "0 45 15 ? * MON-FRI"
 then
 	if(sw_Vacation.state == OFF) {
-		if(wx_Temperature.state < 25.0) {
+		if(wx_Temperature.state < 30.0) {
 			if(HVAC_HeatSetPoint.state < 66) {
 				sendCommand(HVAC_HeatSetPoint, 66)
 			}
@@ -70,7 +70,7 @@ when
 	Time cron "0 0 16 ? * MON-FRI"
 then
 	if(sw_Vacation.state == OFF) {
-		if(wx_Temperature.state < 35.0) {
+		if(wx_Temperature.state < 40.0) {
 			if(HVAC_HeatSetPoint.state < 66) {
 				sendCommand(HVAC_HeatSetPoint, 66)
 			}
