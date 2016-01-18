@@ -1,0 +1,67 @@
+import org.openhab.model.script.actions.*
+import org.joda.time.*
+
+rule "Sunset Lights"
+when
+        Item sw_PreSunset received update ON
+then
+        sendCommand(sw_FrontPorchLight, ON)
+end
+
+rule "Sunrise Lights"
+when
+        Item sw_CivilDawn received update ON
+then
+        sendCommand(sw_FrontPorchLight, OFF)
+        sendCommand(sw_BackPorchLight, OFF)
+end
+
+rule "Night Lights - Weekday"
+when
+        Time cron "0 15 22 ? * SUN-THU"
+then
+        sendCommand(sw_FrontPorchLight, OFF)
+        sendCommand(sw_BackPorchLight, OFF)
+end
+
+rule "Early Workout Lights 5:30"
+when
+	Time cron "0 30 5 ? * TUE-THU"
+then
+	sendCommand(dm_FamilyRoomLamp, 10)
+end
+
+rule "Early Workout Lights 5:35"
+when
+        Time cron "0 35 5 ? * TUE-THU"
+then
+        sendCommand(sw_FrontPorchLight, ON)
+        sendCommand(dm_KitchenCabinet, 20)
+end
+
+rule "Wake Up Lights 6:30 Weekday"
+when
+	Time cron "0 30 6 ? * MON-FRI"
+then
+	sendCommand(dm_FamilyRoomLamp, 100)
+end
+
+rule "Wake Up Lights 6:50 Weekday"
+when
+	Time cron "0 50 6 ? * MON-FRI"
+then
+	if(dm_KitchenCabinet.state < 70) {
+		sendCommand(dm_KitchenCabinet, 70)
+	}
+end
+
+rule "Workday Morning Light Check"
+when
+        Time cron "0 30 8 ? * MON-FRI"
+then
+	if(sw_WFH.state == OFF) {
+		sendCommand(dm_KitchenCabinet, 0)
+		sendCommand(dm_BedroomLamp, 0)
+		sendCommand(dm_FamilyRoomLamp, 0)
+	}
+end
