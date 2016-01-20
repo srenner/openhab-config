@@ -1,0 +1,27 @@
+Group Lights
+
+Switch  sw_GarageLight          "Garage Light"                  <switch>        (Garage,Lights) {zwave="3:command=switch_binary"}
+Switch 	sw_BackPorchLight	"Back Porch"	 		<switch> 	(Lights) 	{zwave="4:command=switch_binary"}
+Switch 	sw_FrontPorchLight 	"Front Porch"	 		<switch> 	(Lights) 	{zwave="5:command=switch_binary"}
+Dimmer 	dm_FamilyRoomLamp	"Family Room"					(Lights)	{zwave="11:command=SWITCH_MULTILEVEL, refresh_interval=30"}
+Dimmer	dm_MasterBedroomLamp	"Bedroom Lamp"					(Lights)	{zwave="8:command=SWITCH_MULTILEVEL, refresh_interval=30"}
+Dimmer 	dm_KitchenCabinet	"Kitchen"					(Lights)	{zwave="9:command=SWITCH_MULTILEVEL, refresh_interval=10"}
+
+Group Garage
+
+Contact	ct_GarageTilt 		"Garage Door [MAP(en.map):%s]"	<garagedoor>	(Garage) 	{zwave="7:command=SENSOR_BINARY,respond_to_basic=TRUE"}
+Number	nm_GarageTilt_Battery 	"Garage Sensor Battery [%s %%]"			(Garage) 	{zwave="7:command=BATTERY"}
+
+Group Climate
+
+Number  HVAC1_Temperature "Downstairs Temperature [%.0f F]"     <temperature>   (Climate)       {zwave="15:command=sensor_multilevel,sensor_type=1,refresh_interval=60" }
+Number	HVAC1_HeatSetPoint "Downstairs Heat Set [%.0f F]" 	<temperature> 	(Climate) 	{zwave="15:command=thermostat_setpoint,setpoint_type=1,setpoint_scale=1,refresh_interval=20" }
+
+Number 	HVAC1_CoolSetPoint "Downstairs Cool Set [%.0f F]" 	<temperature> 	(Climate)	{zwave="15:command=thermostat_setpoint,setpoint_type=2,setpoint_scale=1,refresh_interval=20" }
+Number  HVAC1_Mode "Downstairs Mode [%d]"           		<climate>       (Climate)       {zwave="15:command=thermostat_mode,refresh_interval=120" }
+Number  HVAC1_Operating_State "Downstairs Op State [%d]"         		(Climate)       {zwave="15:command=thermostat_operating_state,refresh_interval=60"}
+Number  HVAC1_Fan_State "Downstairs Fan State [%d]"             		(Climate)       {zwave="15:command=thermostat_fan_state,refresh_interval=60"}
+
+
+Switch 	sw_BedroomVent		"Bedroom Vent"			<switch>	(Climate)	{zwave="12:command=SWITCH_BINARY"}
+
