@@ -12,12 +12,11 @@ sitemap default label="Renner Household"
 	Frame label="Climate Control" {
 		
 		Switch item=sw_WFH label="WFH" visibility=[sw_WorkDay==ON]
-		Text item=HVAC_Temperature label="Downstairs Temperature [%.0f °F]"
-		Setpoint item=HVAC_HeatSetPoint label="Set Downstairs [%.0f °F]" icon="temperature" minValue=55 maxValue=85 step=1 switchSupport
-		Text item=wx_Temperature label="Outside Temperature [%.0f °F]" icon="temperature"
 		/*
-		Text item=wx_Humidity label="Outside Humidity [%.0f %%]" icon="temperature"
+		Text item=HVAC1_Temperature label="Downstairs Temperature [%.0f °F]"
 		*/
+		Setpoint item=HVAC1_HeatSetPoint label="Set Downstairs [%.0f °F]" icon="temperature" minValue=55 maxValue=85 step=1 switchSupport
+		Text item=wx_Temperature label="Outside Temperature [%.0f °F]" icon="temperature"
 		Group item=Climate label="See All" icon="temperature"
 	}
 
