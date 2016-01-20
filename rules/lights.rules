@@ -28,7 +28,7 @@ rule "Early Workout Lights 5:30"
 when
 	Time cron "0 30 5 ? * TUE-THU"
 then
-	sendCommand(dm_FamilyRoomLamp, 10)
+	sendCommand(dm_FamilyRoomLamp, 5)
 end
 
 rule "Early Workout Lights 5:35"
@@ -36,6 +36,7 @@ when
         Time cron "0 35 5 ? * TUE-THU"
 then
         sendCommand(sw_FrontPorchLight, ON)
+	sendCommand(dm_FamilyRoomLamp, 0)
         sendCommand(dm_KitchenCabinet, 20)
 end
 
@@ -61,7 +62,7 @@ when
 then
 	if(sw_WFH.state == OFF) {
 		sendCommand(dm_KitchenCabinet, 0)
-		sendCommand(dm_BedroomLamp, 0)
+		sendCommand(dm_MasterBedroomLamp, 0)
 		sendCommand(dm_FamilyRoomLamp, 0)
 	}
 end
