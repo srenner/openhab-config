@@ -5,14 +5,14 @@ rule "Vacation On"
 when
 	Item sw_Vacation update ON
 then
-	sendCommand(HVAC_HeatSetPoint, 62)
+	sendCommand(HVAC1_HeatSetPoint, 62)
 end
 
 rule "Vacation Off"
 when
 	Item sw_Vacation update OFF
 then
-	sendCommand(HVAC_HeatSetPoint, 68)
+	sendCommand(HVAC1_HeatSetPoint, 68)
 end
 
 rule "WFH On"
@@ -20,7 +20,7 @@ when
         Item sw_WFH received update ON
 then
 	if(sw_WorkDay.state == ON) {
-		sendCommand(HVAC_HeatSetPoint, 68)
+		sendCommand(HVAC1_HeatSetPoint, 68)
 	}
 end
 
@@ -29,7 +29,7 @@ when
 	Time cron "0 45 5 ? * MON-FRI"
 then
 	if(sw_Vacation.state == OFF) {
-		sendCommand(HVAC_HeatSetPoint, 68)
+		sendCommand(HVAC1_HeatSetPoint, 68)
 	}
 end	
 
@@ -38,7 +38,7 @@ when
 	Time cron "0 30 5 ? * TUE-THU"
 then
 	if(sw_Vacation.state == OFF) {
-		sendCommand(HVAC_HeatSetPoint, 68)
+		sendCommand(HVAC1_HeatSetPoint, 68)
 	}
 end
 
@@ -46,9 +46,10 @@ rule "Downstairs HVAC - During Work"
 when
 	Time cron "0 15 7 ? * MON-FRI"
 then
+	sendCommand(sw_BedroomVent, OFF)
 	sendCommand(sw_WorkDay, ON)
 	if(sw_WFH.state == OFF) {
-		sendCommand(HVAC_HeatSetPoint, 62)
+		sendCommand(HVAC1_HeatSetPoint, 62)
 	}
 end
 
@@ -58,8 +59,8 @@ when
 then
 	if(sw_Vacation.state == OFF) {
 		if(wx_Temperature.state < 30.0) {
-			if(HVAC_HeatSetPoint.state < 66) {
-				sendCommand(HVAC_HeatSetPoint, 66)
+			if(HVAC1_HeatSetPoint.state < 66) {
+				sendCommand(HVAC1_HeatSetPoint, 66)
 			}
 		}
 	}
@@ -71,8 +72,8 @@ when
 then
 	if(sw_Vacation.state == OFF) {
 		if(wx_Temperature.state < 40.0) {
-			if(HVAC_HeatSetPoint.state < 66) {
-				sendCommand(HVAC_HeatSetPoint, 66)
+			if(HVAC1_HeatSetPoint.state < 66) {
+				sendCommand(HVAC1_HeatSetPoint, 66)
 			}
 		}
 	}
@@ -83,10 +84,11 @@ when
 	Time cron "0 30 16 ? * MON-FRI"
 then
 	if(sw_Vacation.state == OFF) {
-		sendCommand(HVAC_HeatSetPoint, 68)
+		sendCommand(HVAC1_HeatSetPoint, 68)
+		sendCommand(sw_BedroomVent, ON)
 	}
 	else {
-		sendCommand(HVAC_HeatSetPoint, 62)
+		sendCommand(HVAC1_HeatSetPoint, 62)
 	}
 	sendCommand(sw_WorkDay, OFF)
 	sendCommand(sw_WFH, OFF)
@@ -97,7 +99,7 @@ when
 	Time cron "0 15 22 ? * MON-SUN"
 then
 	if(sw_Vacation.state == OFF) {
-		sendCommand(HVAC_HeatSetPoint, 65)
+		sendCommand(HVAC1_HeatSetPoint, 65)
 	}
 end
 
@@ -106,9 +108,9 @@ when
 	Time cron "0 0 7 ? * SAT-SUN"
 then
 	if(sw_Vacation.state == OFF) {
-		sendCommand(HVAC_HeatSetPoint, 68)
+		sendCommand(HVAC1_HeatSetPoint, 68)
 	}
 	else {
-		sendCommand(HVAC_HeatSetPoint, 62)
+		sendCommand(HVAC1_HeatSetPoint, 62)
 	}
 end
