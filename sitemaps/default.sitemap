@@ -4,9 +4,9 @@ sitemap default label="Renner Household"
 		Switch item=sw_GarageLight label="Garage" icon="switch"
 		Switch item=sw_BackPorchLight label="Back Porch" icon="switch"
 		Switch item=sw_FrontPorchLight label="Front Porch" icon="switch"
-		Slider item=dm_KitchenCabinet label="Kitchen Cabinet [%.0f%%]" icon="slider"
+		Slider item=dm_KitchenCabinet label="Kitchen [%.0f%%]" icon="slider"
 		Slider item=dm_FamilyRoomLamp label="Family Room [%.0f%%]" icon="slider"
-		Slider item=dm_MasterBedroomLamp label="Bedroom Lamp [%.0f%%]" icon="slider"
+		Slider item=dm_MasterBedroomLamp label="Bedroom [%.0f%%]" icon="slider"
 	}
 
 	Frame label="Climate Control" {
