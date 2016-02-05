@@ -24,9 +24,9 @@ then
         sendCommand(sw_BackPorchLight, OFF)
 end
 
-rule "Early Workout Lights 5:30"
+rule "Early Workout Lights 5:31"
 when
-	Time cron "0 30 5 ? * TUE-THU"
+	Time cron "0 31 5 ? * TUE-THU"
 then
 	sendCommand(dm_FamilyRoomLamp, 5)
 end
@@ -40,11 +40,14 @@ then
         sendCommand(dm_KitchenCabinet, 20)
 end
 
-rule "Wake Up Lights 6:30 Weekday"
+rule "Wake Up Lights 6:25 Weekday"
 when
-	Time cron "0 30 6 ? * MON-FRI"
+	Time cron "0 25 6 ? * MON-FRI"
 then
 	sendCommand(dm_FamilyRoomLamp, 100)
+	if(dm_KitchenCabinet.state < 20) {
+		sendCommand(dm_KitchenCabinet, 20)
+	}
 end
 
 rule "Wake Up Lights 6:50 Weekday"
@@ -58,11 +61,32 @@ end
 
 rule "Workday Morning Light Check"
 when
-        Time cron "0 30 8 ? * MON-FRI"
+        Time cron "0 15 8 ? * MON-FRI"
 then
 	if(sw_WFH.state == OFF) {
 		sendCommand(dm_KitchenCabinet, 0)
 		sendCommand(dm_MasterBedroomLamp, 0)
 		sendCommand(dm_FamilyRoomLamp, 0)
+	}
+end
+
+rule "Early Evening"
+when
+	Time cron "0 15 18 ? * MON-FRI"
+then
+	if(dm_FamilyRoomLamp.state < 50) {
+		sendCommand(dm_FamilyRoomLamp, 50)
+	}
+	if(dm_MasterBedroomLamp.state < 5) {
+		sendCommand(dm_MasterBedroomLamp, 5)
+	}
+end
+
+rule "Mid Evening"
+when
+	Time cron "0 15 20 ? * MON-FRI"
+then
+	if(dm_KitchenCabinet.state > 20) {
+		sendCommand(dm_KitchenCabinet, 20)
 	}
 end
