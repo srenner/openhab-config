@@ -17,6 +17,7 @@ sitemap default label="Renner Household"
 		*/
 		Setpoint item=HVAC1_HeatSetPoint label="Set Downstairs [%.0f °F]" icon="temperature" minValue=55 maxValue=85 step=1 switchSupport
 		Text item=wx_Temperature label="Outside Temperature [%.0f °F]" icon="temperature"
+		Switch item=sw_BedroomVent label="Bedroom Vent" icon="switch"
 		Group item=Climate label="See All" icon="temperature"
 	}
 
