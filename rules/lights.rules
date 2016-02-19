@@ -29,6 +29,7 @@ when
 	Time cron "0 31 5 ? * TUE-THU"
 then
 	sendCommand(dm_FamilyRoomLamp, 5)
+	sendCommand(dm_KitchenCabinet, 14)
 end
 
 rule "Early Workout Lights 5:35"
@@ -50,9 +51,9 @@ then
 	}
 end
 
-rule "Wake Up Lights 6:50 Weekday"
+rule "Wake Up Lights 6:45 Weekday"
 when
-	Time cron "0 50 6 ? * MON-FRI"
+	Time cron "0 45 6 ? * MON-FRI"
 then
 	if(dm_KitchenCabinet.state < 70) {
 		sendCommand(dm_KitchenCabinet, 70)
@@ -84,7 +85,7 @@ end
 
 rule "Mid Evening"
 when
-	Time cron "0 15 20 ? * MON-FRI"
+	Time cron "0 45 19 ? * MON-FRI"
 then
 	if(dm_KitchenCabinet.state > 20) {
 		sendCommand(dm_KitchenCabinet, 20)
