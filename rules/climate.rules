@@ -66,6 +66,17 @@ then
 	}
 end
 
+rule "Pre-dawn Bedroom Vent"
+when
+	Time cron "0 0 4 ? * SUN-SAT"
+then
+	if(sw_Vacation.state == OFF) {
+		if(wx_Temperature.state < 50) {
+			sendCommand(sw_BedroomVent, ON)
+		}
+	}
+end
+
 rule "Downstairs HVAC - Afternoon Checkpoint 2"
 when
 	Time cron "0 0 16 ? * MON-FRI"
