@@ -51,6 +51,24 @@ then
 	}
 end
 
+rule "Wake Up Lights 6:30 Weekday"
+when
+	Time cron "0 30 6 ? * MON-FRI"
+then
+	if(dm_MasterBedroomLamp.state < 5) {
+		sendCommand(dm_MasterBedroomLamp, 5)
+	}
+end
+
+rule "Wake Up Lights 6:40 Weekday"
+when
+	Time cron "0 40 6 ? * MON-FRI"
+then
+	if(dm_MasterBedroomLamp.state == 5) {
+		sendCommand(dm_MasterBedroomLamp, 100)
+	}
+end
+
 rule "Wake Up Lights 6:45 Weekday"
 when
 	Time cron "0 45 6 ? * MON-FRI"
