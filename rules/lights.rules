@@ -46,9 +46,6 @@ when
 	Time cron "0 25 6 ? * MON-FRI"
 then
 	sendCommand(dm_FamilyRoomLamp, 100)
-	if(dm_KitchenCabinet.state < 20) {
-		sendCommand(dm_KitchenCabinet, 20)
-	}
 end
 
 rule "Wake Up Lights 6:30 Weekday"
@@ -58,13 +55,16 @@ then
 	if(dm_MasterBedroomLamp.state < 5) {
 		sendCommand(dm_MasterBedroomLamp, 5)
 	}
+        if(dm_KitchenCabinet.state < 20) {
+                sendCommand(dm_KitchenCabinet, 20)
+        }
 end
 
 rule "Wake Up Lights 6:40 Weekday"
 when
 	Time cron "0 40 6 ? * MON-FRI"
 then
-	if(dm_MasterBedroomLamp.state == 5) {
+	if(dm_MasterBedroomLamp.state > 0) {
 		sendCommand(dm_MasterBedroomLamp, 100)
 	}
 end
