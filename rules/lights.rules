@@ -86,6 +86,8 @@ then
 		sendCommand(dm_KitchenCabinet, 0)
 		sendCommand(dm_MasterBedroomLamp, 0)
 		sendCommand(dm_FamilyRoomLamp, 0)
+		sendCommand(sw_FrontPorchLight, OFF)
+		sendCommand(sw_BackPorchLight, OFF)
 	}
 end
 
