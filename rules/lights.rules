@@ -8,12 +8,20 @@ then
         sendCommand(sw_FrontPorchLight, ON)
 end
 
-rule "Sunrise Lights"
+rule "Pre-Sunrise Lights"
 when
         Item sw_CivilDawn received update ON
 then
         sendCommand(sw_FrontPorchLight, OFF)
         sendCommand(sw_BackPorchLight, OFF)
+end
+
+rule "Sunrise Lights"
+when
+	Item sw_Sunrise received update ON
+then
+	sendCommand(sw_FrontPorchLight, OFF)
+	sendCommand(sw_BackPorchLight, OFF)
 end
 
 rule "Night Lights - Weekday"
