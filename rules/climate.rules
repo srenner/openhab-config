@@ -77,6 +77,13 @@ then
 	}
 end
 
+rule "Weekday Morning Vent 6:35"
+when
+	Time cron "0 35 6 ? * MON-FRI"
+then
+	sendCommand(sw_BedroomVent, OFF)
+end
+
 rule "Downstairs HVAC - Afternoon Checkpoint 2"
 when
 	Time cron "0 0 16 ? * MON-FRI"
