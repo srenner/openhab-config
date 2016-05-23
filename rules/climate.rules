@@ -53,6 +53,15 @@ then
 	}
 end
 
+rule "Upstairs HVAC - Afternoon Checkpoint 1"
+when
+	Time cron "0 0 14 ? * SUN-SAT"
+then
+	if(wx_Temperature.state > 75.0) {
+		sendCommand(sw_BedroomVent, ON)
+	}
+end
+
 rule "Downstairs HVAC - Afternoon Checkpoint 1"
 when
 	Time cron "0 45 15 ? * MON-FRI"
