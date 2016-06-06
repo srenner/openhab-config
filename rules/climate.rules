@@ -50,6 +50,7 @@ then
 	sendCommand(sw_WorkDay, ON)
 	if(sw_WFH.state == OFF) {
 		sendCommand(HVAC1_HeatSetPoint, 62)
+		sendCommand(HVAC1_CoolSetPoint, 78)
 	}
 end
 
@@ -112,6 +113,7 @@ when
 then
 	if(sw_Vacation.state == OFF) {
 		sendCommand(HVAC1_HeatSetPoint, 68)
+		sendCommand(HVAC1_CoolSetPoint, 74)
 		sendCommand(sw_BedroomVent, ON)
 	}
 	else {
