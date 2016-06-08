@@ -132,6 +132,17 @@ then
 	}
 end
 
+rule "Downstairs HVAC - Night Check"
+when
+	Time cron "0 0 2 ? * MON-SUN"
+then
+	if(wx_Temperature.state < 70.0) {
+		if(HVAC1_CoolSetPoint < 76) {
+			sendCommand(HVAC1_CoolSetPoint, 76)
+		}
+	}
+end
+
 rule "Downstairs HVAC - Weekend"
 when
 	Time cron "0 0 7 ? * SAT-SUN"
