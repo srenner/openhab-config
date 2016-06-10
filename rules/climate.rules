@@ -104,6 +104,11 @@ then
 				sendCommand(HVAC1_HeatSetPoint, 66)
 			}
 		}
+		if(wx_Temperature.state > 90.0) {
+			if(HVAC1_CoolSetPoint.state > 74) {
+				sendCommand(HVAC1_CoolSetPoint, 74)
+			}
+		}
 	}
 end
 
