@@ -14,13 +14,19 @@ Number	nm_GarageTilt_Battery 	"Garage Sensor Battery [%s %%]"			(Garage) 	{zwave
 
 Group Climate
 
-Number  HVAC1_Temperature "Downstairs Temperature [%.0f F]"     <temperature>   (Climate)       {zwave="15:command=sensor_multilevel,sensor_type=1,refresh_interval=57" }
-Number	HVAC1_HeatSetPoint "Downstairs Heat Set [%.0f F]" 	<temperature> 	(Climate) 	{zwave="15:command=thermostat_setpoint,setpoint_type=1,setpoint_scale=1,refresh_interval=29" }
+Number  HVAC1_Temperature "Downstairs Temperature [%.0f F]"     <temperature>   (Climate)       {zwave="16:command=sensor_multilevel,sensor_type=1,refresh_interval=57" }
+Number	HVAC1_HeatSetPoint "Downstairs Heat Set [%.0f F]" 	<temperature> 	(Climate) 	{zwave="16:command=thermostat_setpoint,setpoint_type=1,setpoint_scale=1,refresh_interval=29" }
 
-Number 	HVAC1_CoolSetPoint "Downstairs Cool Set [%.0f F]" 	<temperature> 	(Climate)	{zwave="15:command=thermostat_setpoint,setpoint_type=2,setpoint_scale=1,refresh_interval=21" }
-Number  HVAC1_Mode "Downstairs Mode [%d]"           		<climate>       (Climate)       {zwave="15:command=thermostat_mode,refresh_interval=118" }
-Number  HVAC1_Operating_State "Downstairs Op State [%d]"         		(Climate)       {zwave="15:command=thermostat_operating_state,refresh_interval=59"}
-Number  HVAC1_Fan_State "Downstairs Fan State [%d]"             		(Climate)       {zwave="15:command=thermostat_fan_state,refresh_interval=60"}
+Number  HVAC1_CoolSetPoint "Downstairs Cool Set [%.0f F]"       <temperature>   (Climate)       {zwave="16:command=thermostat_setpoint,setpoint_type=2,setpoint_scale=1,refresh_interval=21" }
+Number  HVAC1_Mode "Downstairs Mode [%d]"                       <climate>       (Climate)       {zwave="16:command=thermostat_mode,refresh_interval=118" }
+Number  HVAC1_Operating_State "Downstairs Op State [%d]"                        (Climate)       {zwave="16:command=thermostat_operating_state,refresh_interval=59"}
+Number  HVAC1_Fan_State "Downstairs Fan State [%d]"                             (Climate)       {zwave="16:command=thermostat_fan_state,refresh_interval=60"}
+
+Number 	HVAC2_Temperature "Upstairs Temperature [%.0f F]"	<temperature>	(Climate)	{zwave="17:command=sensor_multilevel,sensor_type=1,refresh_interval=57"}
+Number 	HVAC2_CoolSetPoint "Upstairs Cool Set [%.0f F]" 	<temperature> 	(Climate)	{zwave="17:command=thermostat_setpoint,setpoint_type=2,setpoint_scale=1,refresh_interval=21" }
+Number  HVAC2_Mode "Upstairs Mode [%d]"           		<climate>       (Climate)       {zwave="17:command=thermostat_mode,refresh_interval=118" }
+Number  HVAC2_Operating_State "Upstairs Op State [%d]"         			(Climate)       {zwave="17:command=thermostat_operating_state,refresh_interval=59"}
+Number  HVAC2_Fan_State "Upstairs Fan State [%d]"             			(Climate)       {zwave="17:command=thermostat_fan_state,refresh_interval=60"}
 
 
 Switch 	sw_BedroomVent		"Bedroom Vent"			<switch>	(Climate)	{zwave="12:command=SWITCH_BINARY"}
