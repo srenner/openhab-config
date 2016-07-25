@@ -125,6 +125,7 @@ then
 	if(sw_Vacation.state == OFF) {
 		sendCommand(HVAC1_HeatSetPoint, 68)
 		sendCommand(HVAC1_CoolSetPoint, 74)
+		sendCommand(HVAC2_CoolSetPoint, 77)
 		sendCommand(sw_BedroomVent, ON)
 	}
 	else {
@@ -132,6 +133,15 @@ then
 	}
 	sendCommand(sw_WorkDay, OFF)
 	sendCommand(sw_WFH, OFF)
+end
+
+rule "HVAC 7:15pm"
+when
+	Time cron "0 15 19 ? * MON-FRI"
+then
+	if(sw_Vacation.state == OFF) {
+		sendCommand(HVAC1_CoolSetPoint, 76)
+	}
 end
 
 rule "Downstairs HVAC - Bedtime"
