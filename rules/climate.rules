@@ -51,6 +51,7 @@ then
 	if(sw_WFH.state == OFF) {
 		sendCommand(HVAC1_HeatSetPoint, 62)
 		sendCommand(HVAC1_CoolSetPoint, 78)
+		sendCommand(HVAC2_CoolSetPoint, 82)
 	}
 end
 
@@ -63,7 +64,7 @@ then
 	}
 end
 
-rule "Downstairs HVAC - Afternoon Checkpoint 1"
+rule "HVAC - Afternoon Checkpoint 1"
 when
 	Time cron "0 45 15 ? * MON-FRI"
 then
@@ -71,6 +72,11 @@ then
 		if(wx_Temperature.state < 30.0) {
 			if(HVAC1_HeatSetPoint.state < 66) {
 				sendCommand(HVAC1_HeatSetPoint, 66)
+			}
+		}
+		if(wx_Temperature.state > 90.0) {
+			if(HVAC2_CoolSetPoint.state > 80) {
+				sendCommand(HVAC2_CoolSetPoint, 80)
 			}
 		}
 	}
