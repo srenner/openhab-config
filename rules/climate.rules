@@ -144,6 +144,15 @@ then
 	}
 end
 
+rule "Pre-Bedtime"
+when
+	Time cron "0 45 21 ? * MON-SUN"
+then
+	if(wx_Temperature.state > 40) {
+		sendCommand(sw_BedroomVent, OFF)
+	}
+end
+
 rule "Downstairs HVAC - Bedtime"
 when
 	Time cron "0 15 22 ? * MON-SUN"
