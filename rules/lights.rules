@@ -88,9 +88,9 @@ then
 	}
 end
 
-rule "Wake Up Lights 6:55 Weekday"
+rule "Wake Up Lights 6:50 Weekday"
 when
-	Time cron "0 55 6 ? * MON-FRI"
+	Time cron "0 50 6 ? * MON-FRI"
 then
 	if(dm_KitchenCabinet.state < 100) {
 		sendCommand(dm_KitchenCabinet, 100)
