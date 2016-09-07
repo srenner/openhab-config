@@ -141,6 +141,7 @@ when
 then
 	if(sw_Vacation.state == OFF) {
 		sendCommand(HVAC1_CoolSetPoint, 76)
+		sendCommand(HVAC2_CoolSetPoint, 76)
 	}
 end
 
