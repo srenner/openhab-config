@@ -124,8 +124,13 @@ when
 then
 	if(sw_Vacation.state == OFF) {
 		sendCommand(HVAC1_HeatSetPoint, 68)
-		sendCommand(HVAC1_CoolSetPoint, 74)
-		sendCommand(HVAC2_CoolSetPoint, 77)
+		if(wx_Temperature.state > 85.0) {
+			sendCommand(HVAC1_CoolSetPoint, 74)
+		}
+		else {
+			sendCommand(HVAC1_CoolSetPoint, 76)
+		}
+		sendCommand(HVAC2_CoolSetPoint, 76)
 		sendCommand(sw_BedroomVent, ON)
 	}
 	else {
