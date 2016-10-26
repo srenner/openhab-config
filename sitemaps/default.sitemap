@@ -1,7 +1,9 @@
 sitemap default label="Renner Household"
 {
 	Frame label="Lights" {
+		/*
 		Switch item=sw_GarageLight label="Garage" icon="switch"
+		*/
 		Switch item=sw_BackPorchLight label="Back Porch" icon="switch"
 		Switch item=sw_FrontPorchLight label="Front Porch" icon="switch"
 		Slider item=dm_KitchenCabinet label="Kitchen [%.0f%%]" icon="slider"
@@ -15,9 +17,12 @@ sitemap default label="Renner Household"
 		/*
 		Text item=HVAC1_Temperature label="Downstairs Temperature [%.0f °F]"
 		*/
-		Setpoint item=HVAC1_CoolSetPoint label="Set Downstairs [%.0f °F]" icon="temperature" minValue=55 maxValue=85 step=1 switchSupport
-		Setpoint item=HVAC2_CoolSetPoint label="Set Upstairs [%.0f °F]" icon="temperature" minValue=65 maxValue=90 step=1 switchSupport
+		Setpoint item=HVAC1_HeatSetPoint label="Set Heat [%.0f °F]" icon="temperature" minValue=55 maxValue=75 step=1 switchSupport
+		Setpoint item=HVAC1_CoolSetPoint label="Set Main AC [%.0f °F]" icon="temperature" minValue=70 maxValue=85 step=1 switchSupport
+		Setpoint item=HVAC2_CoolSetPoint label="Set Upstairs [%.0f °F]" icon="temperature" minValue=70 maxValue=90 step=1 switchSupport
+		/*
 		Text item=wx_Temperature label="Outside Temperature [%.0f °F]" icon="temperature"
+		*/
 		Switch item=sw_BedroomVent label="Bedroom Vent" icon="switch"
 		Group item=Climate label="See All" icon="temperature"
 	}
